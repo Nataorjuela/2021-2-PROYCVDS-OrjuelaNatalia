@@ -17,7 +17,7 @@
     <session-timeout>30</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>faces/signin.xhtml</welcome-file>
+    <welcome-file>faces/inicio.xhtml</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
@@ -37,13 +37,4 @@
     <dispatcher>INCLUDE</dispatcher>
     <dispatcher>ERROR</dispatcher>
   </filter-mapping>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/faces/404.xhtml</location>
-  </error-page>
-
-  <error-page>
-    <error-code>401</error-code>
-    <location>/faces/401.xhtml</location>
-  </error-page>
 </web-app>
