@@ -7,7 +7,7 @@
 	</properties>
 
 	<typeAliases>
-		<typeAlias type='edu.eci.cvds.entities.Category' alias='' />
+		<typeAlias type='edu.eci.cvds.entities.Usuario' alias='Usuario' />
 	</typeAliases>
 
 	<environments default="test">
@@ -23,7 +23,6 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="mappers/"></mapper>
 	</mappers>
 
 </configuration>
