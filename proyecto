@@ -1,0 +1,74 @@
+/*TABLAS*/
+create table usuario (
+	idUsuario varchar(10) not null, 
+	idRol serial,
+	tipoRol varchar(20) not null,
+	estado boolean,
+	correo varchar(50) not null,
+	contraseña varchar(80)not null,
+);
+
+create table rol (
+	idRol serial,
+	tipoRol varchar(20) not null,
+);
+
+create table categoria (
+	idCategoria serial,
+	nombreCateg varchar(40) not null,
+	descripcion varchar (200)not null,
+	fechaCreacion date not null,
+	fechaModif date not null
+);
+
+create table necesidad (
+	idNecesidad serial,
+	idCategoria serial,
+	nombreCateg varchar(40)not null,
+	nombreNec varchar(40)not null,
+	descripcion varchar(200) not null,
+	urgencia varhcar(1) not null,
+	fechaCreacion date not null,
+	estado boolean,
+	fechaModif date not null
+);
+
+create table oferta(
+	idOferta serial,
+	idCategoria serial,
+	nombreCateg varchar(40)not null,
+	nombreOferta varchar(40) not null,
+	descripcion varchar(200) not null,
+	fechaCreacion date not null,
+	fechaModif date not null,
+);
+/*llaves primarias*/
+alter table usuario
+add constraint pk_usuario 
+primary key(idUsuario);
+
+alter table rol
+add constraint pk_rol 
+primary key(idRol,tipoRol);
+
+alter table categoria
+add constraint pk_categoria
+primary key(idCategoria,nombreCateg);
+
+alter table necesidad
+add constraint pk_necesidad
+primary key(idNecesida,nombreNec);
+
+
+alter table oferta
+add constraint pk_oferta 
+primary key(idOferta,nombreOferta);
+
+/*llaves foraneas*/
+
+alter table usuario
+add constraint fk_usuario_rol 
+foreign key(idRol)
+references rol (idRol;
+
+
