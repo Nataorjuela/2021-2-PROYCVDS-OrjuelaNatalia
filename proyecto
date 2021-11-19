@@ -1,22 +1,27 @@
 /*TABLAS*/
+drop table usuario;
+drop table rol;
+drop table categoria;
+drop table necesidad;
+drop table oferta;
+
+
 create table usuario (
-	idUsuario varchar(10) not null, 
-	idRol serial,
+	idUsuario varchar(10) primary key, 
+	idRol integer,
 	tipoRol varchar(20) not null,
 	estado boolean,
 	correo varchar(50) not null,
-	contraseña varchar(80)not null,
+	contraseña varchar(80)not null
 );
 
 create table rol (
-	idRol serial,
-	tipoRol varchar(20) not null,
+	idRol serial primary key,
+	tipoRol varchar(20) not null
 );
 
 create table categoria (
-	idUsuario varchar(10)not null,
-	idRol serial,
-	idCategoria serial,
+	idCategoria serial primary key,
 	nombreCateg varchar(40) not null,
 	descripcion varchar (200)not null,
 	fechaCreacion date not null,
@@ -24,71 +29,53 @@ create table categoria (
 );
 
 create table necesidad (
-	idNecesidad serial,
-	idCategoria serial,
-	nombreCateg varchar(40)not null,
+	idNecesidad serial primary key,
+	idCategoria integer,
 	nombreNec varchar(40)not null,
 	descripcion varchar(200) not null,
-	urgencia varhcar(1) not null,
+	urgencia varchar(1) not null,
 	fechaCreacion date not null,
 	estado boolean,
 	fechaModif date not null
 );
 
 create table oferta(
-	idOferta serial,
-	idCategoria serial,
-	nombreCateg varchar(40)not null,
+	idOferta serial primary key,
+	idCateg int,
 	nombreOferta varchar(40) not null,
 	descripcion varchar(200) not null,
+	estado boolean,
 	fechaCreacion date not null,
-	fechaModif date not null,
+	fechaModif date not null
 );
-/*llaves primarias*/
-alter table usuario
-add constraint pk_usuario 
-primary key(idUsuario);
-
-alter table rol
-add constraint pk_rol 
-primary key(idRol,tipoRol);
-
-alter table categoria
-add constraint pk_categoria
-primary key(idCategoria,nombreCateg);
-
-alter table necesidad
-add constraint pk_necesidad
-primary key(idNecesida,nombreNec);
-
-
-alter table oferta
-add constraint pk_oferta 
-primary key(idOferta,nombreOferta);
 
 /*llaves foraneas*/
 
 alter table usuario
 add constraint fk_usuario_rol 
 foreign key(idRol)
-references rol (idRol;
+references rol(idRol)on delete cascade;
 
-alter table categoria
-add constraint fk_categoria_usuario 
-foreign key(idUsuario)
-references usuario(idUsuario);
-
-alter table categoria
-add constraint fk_categoria_rol 
-foreign key(idRol)
-references usuario(idRol);
 
 alter table necesidad
 add constraint fk_necesidad_categ 
 foreign key(idCategoria)
-references catergoria(idCategoria);
+references categoria(idCategoria)on delete cascade;
 
 alter table oferta
 add constraint fk_oferta_categ 
 foreign key(idCategoria)
-references categoria(idCategoria);
+references categoria(idCategoria)on delete cascade;
+
+/*poblar*/
+
+/*entidades*/
+
+/*DAO*/
+
+/*MAPPER,MYBATIES(3)*/
+
+/*BIND PARA CONECTARLOS EN GUICE*/
+
+/*FACTORY BIND*/
+
