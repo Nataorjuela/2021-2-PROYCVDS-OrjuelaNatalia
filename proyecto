@@ -14,6 +14,8 @@ create table rol (
 );
 
 create table categoria (
+	idUsuario varchar(10)not null,
+	idRol serial,
 	idCategoria serial,
 	nombreCateg varchar(40) not null,
 	descripcion varchar (200)not null,
@@ -71,4 +73,22 @@ add constraint fk_usuario_rol
 foreign key(idRol)
 references rol (idRol;
 
+alter table categoria
+add constraint fk_categoria_usuario 
+foreign key(idUsuario)
+references usuario(idUsuario);
 
+alter table categoria
+add constraint fk_categoria_rol 
+foreign key(idRol)
+references usuario(idRol);
+
+alter table necesidad
+add constraint fk_necesidad_categ 
+foreign key(idCategoria)
+references catergoria(idCategoria);
+
+alter table oferta
+add constraint fk_oferta_categ 
+foreign key(idCategoria)
+references categoria(idCategoria);
