@@ -1,0 +1,95 @@
+/*TABLAS*/
+drop table usuario;
+drop table rol;
+drop table categoria;
+drop table necesidad;
+drop table oferta;
+
+
+create TABLE IF not exists usuario (
+	idUsuario varchar(10) primary key, 
+	idRol integer,
+	tipoRol varchar(20) not null,
+	estado boolean,
+	correo varchar(50) not null,
+	contraseña varchar(80)not null
+);
+
+create TABLE IF NOT exists rol (
+	idRol serial primary key,
+	tipoRol varchar(20) not null
+);
+
+create TABLE IF NOT exists categoria (
+	idCategoria serial primary key,
+	nombreCateg varchar(40) not null,
+	descripcion varchar (200)not null,
+	fechaCreacion date not null,
+	fechaModif date not null
+);
+
+create TABLE IF NOT EXISTS necesidad (
+	idNecesidad serial primary key,
+	idCategoria integer,
+	nombreNec varchar(40)not null,
+	descripcion varchar(200) not null,
+	urgencia varchar(1) not null,
+	fechaCreacion date not null,
+	estado boolean,
+	fechaModif date not null
+);
+
+create TABLE IF NOT EXISTS  oferta(
+	idOferta serial primary key,
+	idCateg int,
+	nombreOferta varchar(40) not null,
+	descripcion varchar(200) not null,
+	estado boolean,
+	fechaCreacion date not null,
+	fechaModif date not null
+);
+
+/*llaves foraneas*/
+
+alter table usuario
+add constraint fk_usuario_rol 
+foreign key(idRol)
+references rol(idRol)on delete cascade;
+
+
+alter table necesidad
+add constraint fk_necesidad_categ 
+foreign key(idCategoria)
+references categoria(idCategoria)on delete cascade;
+
+alter table oferta
+add constraint fk_oferta_categ 
+foreign key(idCategoria)
+references categoria(idCategoria)on delete cascade;
+
+/*poblar*/
+insert INTO rol VALUES ("Administrador");
+insert INTO rol VALUES ("Estudiante");
+insert INTO rol VALUES ("Profesor");
+insert INTO rol VALUES ("Egresado");
+insert INTO rol VALUES ("Administrativo");
+
+INSERT INTO usuario VALUES ("admin1","1","Administrador",TRUE,"admin1@gmail.com","");
+INSERT INTO usuario VALUES ("est1","1","Administrador",TRUE,"est1@gmail.com","");
+INSERT INTO usuario VALUES ("prof1","1","Administrador",TRUE,"prof1@gmail.com","");
+INSERT INTO usuario VALUES ("egre1","1","Administrador",TRUE,"egre1@gmail.com","");
+INSERT INTO usuario VALUES ("admint1","1","Administrador",TRUE,"admint1@gmail.com","");
+
+INSERT INTO categoria values();
+
+INSERT INTO necesidad VALUES ();
+
+/*entidades*/
+
+/*DAO*/
+
+/*MAPPER,MYBATIES(3)*/
+
+/*BIND PARA CONECTARLOS EN GUICE*/
+
+/*FACTORY BIND*/

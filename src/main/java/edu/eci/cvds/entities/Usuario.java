@@ -2,40 +2,49 @@ package edu.eci.cvds.entities;
 
 public class Usuario {
 
-    private String usuarioI;
-    private String nombre;
+    private String idUsuario;
+    private int idRol;
+    private String tipoRol;
     private boolean estado;
     private String correo;
     private String contraseña;
-    private int tipoUsuario;
 
-    public Usuario(){
+
+    public Usuario() {
         super();
     }
 
-    public Usuario(String usuarioI, String nombre, boolean estado, String correo, String contraseña, int tipoUsuario) {
-        this.usuarioI = usuarioI;
-        this.nombre = nombre;
+    public Usuario(String idUsuario, int idRol, String tipoRol, boolean estado, String correo, String contraseña) {
+        this.idUsuario = idUsuario;
+        this.idRol = idRol;
+        this.tipoRol = tipoRol;
         this.estado = estado;
         this.correo = correo;
         this.contraseña = contraseña;
-        this.tipoUsuario = tipoUsuario;
     }
 
-    public String getUsuarioI() {
-        return usuarioI;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuarioI(String usuarioI) {
-        this.usuarioI = usuarioI;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
+
+    public String getTipoRol() {
+        return tipoRol;
+    }
+
+    public void setTipoRol(String tipoRol) {
+        this.tipoRol = tipoRol;
     }
 
     public boolean isEstado() {
@@ -62,11 +71,4 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public int getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(int tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
 }
