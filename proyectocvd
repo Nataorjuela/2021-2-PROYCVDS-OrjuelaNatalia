@@ -74,22 +74,20 @@ insert INTO rol VALUES ("Profesor");
 insert INTO rol VALUES ("Egresado");
 insert INTO rol VALUES ("Administrativo");
 
-INSERT INTO usuario VALUES ("admin1","1","Administrador",TRUE,"admin1@gmail.com","");
-INSERT INTO usuario VALUES ("est1","1","Administrador",TRUE,"est1@gmail.com","");
-INSERT INTO usuario VALUES ("prof1","1","Administrador",TRUE,"prof1@gmail.com","");
-INSERT INTO usuario VALUES ("egre1","1","Administrador",TRUE,"egre1@gmail.com","");
-INSERT INTO usuario VALUES ("admint1","1","Administrador",TRUE,"admint1@gmail.com","");
+INSERT INTO usuario VALUES ("admin1","1","Administrador",TRUE,"admin1@gmail.com","8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918");
+INSERT INTO usuario VALUES ("est1","2","Estudiante",TRUE,"est1@gmail.com","B6CF348BC9B1A71D9DB0CE76C3B2645A3D57E2A6B2119B58A236ADBEF5E05C43");
+INSERT INTO usuario VALUES ("prof1","3","Profesor",TRUE,"prof1@gmail.com","51D1E6A398ACBDA7E15B687DE747E7DFE95FA13154DCB40AA8AB37F1E2B393A0");
+INSERT INTO usuario VALUES ("egre1","4","Egresado",TRUE,"egre1@gmail.com","1E7BBC88F648E71F6E19223AE8DB81F394A698B3348EA6AEDFBAAB328C7A5D0C");
+INSERT INTO usuario VALUES ("admt1","5","Administrativo",TRUE,"admint1@gmail.com","AF8A3F4C455535CC17AC23DABDB16197B9F30A20972AB0E8C65AF9DCECA39ABB");
 
-INSERT INTO categoria values();
+INSERT INTO categoria values("academica","en esta categoria se encuentran todas las necesidades y ofertas referentes al area academica",'2021-11-01',true,'2021-11-02');
 
-INSERT INTO necesidad VALUES ();
+INSERT INTO necesidad VALUES ("escasez de libros","en el area de sistemas hay escasez de libros fisicos","B",'2021-02-15','2021-03-20');
+
+insert into oferta values (1,"donacion de libros sobre bases de datos","la biblioteca la Giralda tiene 50 libros sobre bases de datos para donar",true,'2021-03-19','2021-03-20');
 
 /*entidades*/
-
 /*DAO*/
-
 /*MAPPER,MYBATIES(3)*/
-
 /*BIND PARA CONECTARLOS EN GUICE*/
-
 /*FACTORY BIND*/
