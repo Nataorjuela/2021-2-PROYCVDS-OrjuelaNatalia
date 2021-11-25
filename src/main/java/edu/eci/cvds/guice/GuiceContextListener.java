@@ -1,6 +1,8 @@
 package edu.eci.cvds.guice;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.MyDAOImplement.UsuarioDAOImpl;
+import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.services.ServicioSolidaridad;
 import edu.eci.cvds.services.impl.ServicioSolidaridadImpl;
 import org.mybatis.guice.XMLMyBatisModule;
@@ -25,8 +27,11 @@ public class GuiceContextListener implements ServletContextListener {
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
                 //Servicios
-                bind(ServicioSolidaridad.class).to(ServicioSolidaridadImpl.class);                            }
+                bind(ServicioSolidaridad.class).to(ServicioSolidaridadImpl.class);
+                //bind(UsuarioDAO.class).to(UsuarioDAOImpl.class);
+            }
         });
+
         ServletContext servletContext = servletContextEvent.getServletContext();
         servletContext.setAttribute(Injector.class.getName(), injector);
     }
