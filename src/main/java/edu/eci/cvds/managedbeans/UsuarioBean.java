@@ -115,7 +115,7 @@ public class UsuarioBean implements Serializable{
 
     public void redirectHomeUser() throws IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        facesContext.getExternalContext().redirect("../homeA.xhtml");
+        facesContext.getExternalContext().redirect("../administrador.xhtml");
 
 
     }
