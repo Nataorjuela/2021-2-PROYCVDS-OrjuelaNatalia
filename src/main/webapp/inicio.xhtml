@@ -17,6 +17,8 @@
             <p:outputLabel for="usuario" styleClass="p-col-fixed" value="Usuario"/>
             <div>
                 <p:inputText  class="input" id="usuario" value="#{usuarioBean.usuarioId}"/>
+
+
             </div>
         </div>
         <div class="p-field">
@@ -27,6 +29,14 @@
         </div>
         <p:commandButton class="button" action="#{usuarioBean.entrar}" value="Iniciar Sesion" update="growl"/>
         </p:panel>
+        </h:form>
+    </div>
+
+    <div>
+        <h2>Bienvenid@! administrador:</h2>
+        <h:form action="#">
+
+            <h:outputText value="#{usuarioBean.getContraseña()}"/>
         </h:form>
     </div>
 </h:body>

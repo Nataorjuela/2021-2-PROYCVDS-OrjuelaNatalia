@@ -13,32 +13,31 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
+import java.io.IOException;
 
 @SessionScoped
 @ManagedBean(name="usuarioBean")
 public class UsuarioBean implements Serializable{
     private String usuarioId;
+    public String val = "hola";
     private static final Logger logger = LoggerFactory.getLogger(UsuarioBean.class);
     private String contraseña;
     private Subject usuarioActual;
     private boolean recordar=false;
     private String redireccionURL="/faces/inicio.xhtml";
 
-    public void entrar(){
+    public void entrar() throws IOException{
+        System.out.println("Entra al metodo entrar");
         UsernamePasswordToken token = new UsernamePasswordToken(getUsuarioId(),new Sha256Hash(getContraseña()).toHex());
         usuarioActual = SecurityUtils.getSubject();
 
         try{
-            usuarioActual.login(token);
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            Session session = usuarioActual.getSession();
-            session.setAttribute("usuarioId",usuarioId);
-            session.setAttribute("usuarioActual",usuarioActual);
-            if(usuarioActual.hasRole("Administrador")){
-                facesContext.getExternalContext().redirect("/faces/inicio1.xhtml");
-            } else if(usuarioActual.hasRole("Estudiante") || usuarioActual.hasRole("Profesor") || usuarioActual.hasRole("Egresado") || usuarioActual.hasRole("Administrativo")  ){
-                facesContext.getExternalContext().redirect("/faces/inicio2.xhtml");
-            }
+            System.out.println("Hola entre 3");
+            Subject subject = SecurityUtils.getSubject();
+            UsernamePasswordToken token2 = new UsernamePasswordToken(usuarioId,contraseña, true);
+            subject.getSession().setAttribute("contraseña", contraseña);
+            subject.login(token2);
+            redirectHomeUser();
         }
         catch ( UnknownAccountException e ) {
             //username wasn't in the system, show them an error message?
@@ -56,10 +55,8 @@ public class UsuarioBean implements Serializable{
             //unexpected condition - error?
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sign in Error", "Sign in Error"));
             logger.error(e.getMessage(),e);
-        }catch (IOException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sign in Error", "Sign in Error"));
-            logger.error(e.getMessage(),e);
         }
+
     }
     public void salir() {
         SecurityUtils.getSubject().logout();
@@ -109,4 +106,18 @@ public class UsuarioBean implements Serializable{
     public void setRedireccionURL(String redireccionURL) {
         this.redireccionURL = redireccionURL;
     }
+
+
+    public String prueba(){
+        System.out.println("entra");
+        return val;
+    }
+
+    public void redirectHomeUser() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        facesContext.getExternalContext().redirect("../homeA.xhtml");
+
+
+    }
 }
+

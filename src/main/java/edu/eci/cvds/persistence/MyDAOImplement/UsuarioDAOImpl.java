@@ -21,6 +21,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public void registrarNecesidad(int idNecesidad, int idCategoria, String nombreNec, String descripcion, String urgencia, Date fechaCreacion, boolean estado, Date fechaModif) {
-    usuarioMapper.registrarNecesidad(idNecesidad,idCategoria,nombreNec,descripcion,urgencia,fechaModif);
+    usuarioMapper.registrarNecesidad(idNecesidad,idCategoria,nombreNec,descripcion,urgencia,fechaCreacion,estado,fechaModif);
     }
 }
