@@ -4,60 +4,58 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import edu.eci.cvds.security.Loggers;
+import edu.eci.cvds.security.exception.ExceptionLogin;
+
+
+import com.google.inject.Inject;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.io.IOException;
 
-@SessionScoped
 @ManagedBean(name="usuarioBean")
-public class UsuarioBean implements Serializable{
+@SessionScoped
+public class UsuarioBean extends BasePageBean{
+	@Inject
+    private Loggers logger;
     private String usuarioId;
-    public String val = "hola";
-    private static final Logger logger = LoggerFactory.getLogger(UsuarioBean.class);
+    private String message;
     private String contraseña;
     private Subject usuarioActual;
     private boolean recordar=false;
-    private String redireccionURL="/faces/inicio.xhtml";
+    
+    private String redireccionURL="/inicio.xhtml";
 
-    public void entrar() throws IOException{
-        System.out.println("Entra al metodo entrar");
-        UsernamePasswordToken token = new UsernamePasswordToken(getUsuarioId(),new Sha256Hash(getContraseña()).toHex());
-        usuarioActual = SecurityUtils.getSubject();
-
-        try{
-            System.out.println("Hola entre 3");
-            Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token2 = new UsernamePasswordToken(usuarioId,contraseña, true);
-            subject.getSession().setAttribute("contraseña", contraseña);
-            subject.login(token2);
+    public void entrar() throws IOException, ExceptionLogin{
+    	System.out.println("Hola entre en el login");
+        System.out.println(getUsuarioId());
+        System.out.println(getContraseña());
+        boolean isLogger = logger.isLogged();
+        if(!isLogger){
+            System.out.println("Hola entre allll 2");
+            logger.login(usuarioId, contraseña, false);
             redirectHomeUser();
-        }
-        catch ( UnknownAccountException e ) {
-            //username wasn't in the system, show them an error message?
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sign in Error", "Incorrect Credentials"));
-            logger.error(e.getMessage(),e);
-        } catch ( IncorrectCredentialsException e ) {
-            //password didn't match, try again?
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sign in Error", "Incorrect Credentials"));
-            logger.error(e.getMessage(),e);
-        } catch ( LockedAccountException e ) {
-            //account for that username is locked - can't login.  Show them a message?
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sign in Error", "Sign in Error"));
-            logger.error(e.getMessage(),e);
-        } catch ( AuthenticationException e ) {
-            //unexpected condition - error?
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sign in Error", "Sign in Error"));
-            logger.error(e.getMessage(),e);
+        } else{
+            existingSession();
         }
 
     }
+    
+    
+    public void existingSession() throws IOException{
+        this.message = "Another user with those credentials already exists";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        facesContext.getExternalContext().redirect("");
+    }
+    
     public void salir() {
         SecurityUtils.getSubject().logout();
         try {
@@ -108,14 +106,41 @@ public class UsuarioBean implements Serializable{
     }
 
 
-    public String prueba(){
-        System.out.println("entra");
-        return val;
-    }
-
+   
     public void redirectHomeUser() throws IOException {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        facesContext.getExternalContext().redirect("../administrador.xhtml");
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+        if(logger.isAdmin()){
+            System.out.println("Entre a admin");
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+            session.setAttribute("usuarioid", usuarioId);
+            facesContext.getExternalContext().redirect("../administrador.xhtml");
+        }
+        
+        if(logger.isAdministrativo()){
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+            session.setAttribute("usuarioid", usuarioId);
+            facesContext.getExternalContext().redirect("../administrativo.xhtml");
+        }
+        
+        if(logger.isEstudiante()){
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+            session.setAttribute("usuarioid", usuarioId);
+            facesContext.getExternalContext().redirect("../estudiante.xhtml");
+        }
+        
+        if(logger.isProfesor()){
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+            session.setAttribute("usuarioid", usuarioId);
+            facesContext.getExternalContext().redirect("../profesor.xhtml");
+        }
+        
+        if(logger.isEgresado()){
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+            session.setAttribute("usuarioid", usuarioId);
+            facesContext.getExternalContext().redirect("../egresado.xhtml");
+        }
+        
+        
 
 
     }

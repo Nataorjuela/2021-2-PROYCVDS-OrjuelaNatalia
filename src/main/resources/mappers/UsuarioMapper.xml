@@ -2,13 +2,33 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "edu.eci.cvds.persistence.myDAOImplement.mappers.UsuarioMapper">
+<mapper namespace = "edu.eci.cvds.persistence.MyDAOImplement.Mappers.UsuarioMapper">
+
+	<resultMap type='Usuario' id='UsuarioResult'>
+		<id property='idUsuario' column='idUsuario'/>
+		<id property='idRol' column='idRol'/>
+	    <id property='estado' column='estado'/>
+	    <id property='correo' column='correo'/>
+		<id property='contraseña' column='contraseña'/>	
+		<result property='tipoRol' column='tipoRol'/>
+	</resultMap>
     <insert parameterType = "map" id = "crearCategoria">
         INSERT INTO categoria
         (idCategoria, nombreCategoria,descripcion,fechaCreacion,fechaModif
         VALUES
         (#{idCategoria}, #{nombreCategoria}, #{descripcion},#{fechaCreacion}, #{fechaModif});
     </insert>
+    
+    <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
+		select 
+		u.idUsuario,
+		u.idRol,
+		u.tipoRol,
+		u.estado,
+		u.correo,
+		u.contraseña
+		FROM usuario as u;
+	</select>
 
 
 
