@@ -52,38 +52,57 @@
         </header>
 
         <div>
-			<h:form>
-				<p:dataTable id="singleDT" var="usuario" value="#{serviciosBean.consultarUsuarios()}"
+
+            <h:form>
+                
+				<p:dataTable id="singleDT" var="categoria" value="#{serviciosBean.consultarCategorias()}"
 				 paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 				 rows="10">
 					<f:facet name="header">
 						Categorias registradas:
 					</f:facet>
 					<p:column headerText="Id Categoria">
-						<h:outputText value="#{usuario.carnet}" />
+						<h:outputText value="#{categoria.idCategoria}" />
 					</p:column>
 
 					<p:column headerText="Nombre">
-						<h:outputText value="#{usuario.nombre}" />
+						<h:outputText value="#{categoria.nombreCategoria}" />
 					</p:column>
 
 					<p:column headerText="Descripción">
-						<h:outputText value="#{usuario.correo}" />
+						<h:outputText value="#{categoria.descripcion}" />
 					</p:column>
 
 					<p:column headerText="Fecha de creación">
-						<h:outputText value="#{usuario.contrasena}" />
+						<h:outputText value="#{categoria.fechaCreacion}" />
 					</p:column>
 
 					<p:column headerText="Fecha de modificación">
-						<h:outputText value="#{usuario.estado}" />
+						<h:outputText value="#{categoria.fechaModif}" />
 					</p:column>
 					
 					
 				</p:dataTable>
 			</h:form>
-		
+			
 		</div>
+
+        <br />
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+
+           
+            
+
+                <p:inputText  class="input" id="inputEliminar" value="#{serviciosBean.idCategoria}"/>
+                <br />
+                <p:commandButton class="button" actionListener="#{serviciosBean.eliminarCategoria}" value="Eliminar Categoria" update="growl" onclick="location.reload()"/>
+    
+
+        </h:form>
+
+        
         <div class="col">
             <h2>Bienvenid@! administrador:</h2>
             <h:form action="#">

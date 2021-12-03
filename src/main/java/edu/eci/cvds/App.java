@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import edu.eci.cvds.persistence.MyDAOImplement.Mappers.CategoriaMapper;
 import edu.eci.cvds.persistence.MyDAOImplement.Mappers.UsuarioMapper;
 
 
@@ -46,12 +47,28 @@ public class App
         
         //Crear el mapper y usarlo: 
         UsuarioMapper cm= sqlss.getMapper(UsuarioMapper.class);
+        CategoriaMapper ca= sqlss.getMapper(CategoriaMapper.class);
+        
        
         //cm...
         System.out.println("Consulta Usuarios");
         System.out.println(cm.consultarUsuarios());
         System.out.println("----------------------");
         System.out.println("----------------------");
+        
+        System.out.println("Consulta Categorias");
+        System.out.println(ca.consultarCategoria());
+        
+        System.out.println("----------------------");
+        System.out.println("----------------------");
+        
+        
+        System.out.println("Elimina Categoria");
+        ca.eliminarCategoria(1);
+        
+        System.out.println("----------------------");
+        System.out.println("----------------------");
+        
 		
        
 

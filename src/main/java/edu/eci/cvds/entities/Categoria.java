@@ -8,6 +8,11 @@ public class Categoria {
     private String descripcion;
     private Date fechaCreacion;
     private Date fechaModif;
+    
+    
+    public Categoria() {
+        super();
+    }
 
     public Categoria(int idCategoria, String nombreCategoria, String descripcion, Date fechaCreacion, Date fechaModif) {
         this.idCategoria = idCategoria;
@@ -56,4 +61,10 @@ public class Categoria {
     public void setFechaModif(Date fechaModif) {
         this.fechaModif = fechaModif;
     }
+    
+    @Override
+    public String toString() {
+        return "Categoria {idCategoria: " + idCategoria + ", nombreCategoria: " + nombreCategoria + " ,descripcion: " + descripcion + ", fechaCreacion: " + fechaCreacion + ", fechaModif : " + fechaModif+ "}\n";
+    }
+
 }

@@ -7,7 +7,8 @@
 	</properties>
 
 	<typeAliases>
-		<typeAlias type='edu.eci.cvds.entities.Usuario' alias='Usuario' />
+		<typeAlias alias="Usuario" type="edu.eci.cvds.entities.Usuario" />
+		<typeAlias alias="Categoria" type="edu.eci.cvds.entities.Categoria"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -23,6 +24,9 @@
 	</environments>
 
 	<mappers>
+	
+		<mapper resource="mappers/UsuarioMapper.xml"/>
+		<mapper resource="mappers/CategoriaMapper.xml"/>
 	</mappers>
 
 </configuration>

@@ -19,12 +19,12 @@ input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
 }
 
 input::placeholder, textarea::placeholder {
-  color: #aca49c;
+  color: #000000;
   font-size: 0.875em;
 }
 
 input:focus::placeholder, textarea::focus:placeholder {
-  color: #bbb5af;
+  color: #000000;
 }
 
 input::-ms-placeholder, textarea::-ms-placeholder {
@@ -57,16 +57,16 @@ input:hover:focus::-moz-placeholder, textarea:hover:focus::-moz-placeholder {
 }
 
 input:hover::placeholder, textarea:hover::placeholder {
-  color: #e2dedb;
+  color: #000000;
   font-size: 0.875em;
 }
 
 input:hover:focus::placeholder, textarea:hover:focus::placeholder {
-  color: #cbc6c1;
+  color: #000000;
 }
 
 input:hover::placeholder, textarea:hover::placeholder {
-  color: #e2dedb;
+  color: #000000;
   font-size: 0.875em;
 }
 
@@ -78,14 +78,6 @@ body {
   font-family: 'Lato', sans-serif;
   background: #e2dedb;
   color: #b3aca7;
-}
-
-header {
-  position: relative;
-  margin: 100px 0 25px 0;
-  font-size: 2.3em;
-  text-align: center;
-  letter-spacing: 7px;
 }
 
 #forma {
@@ -147,14 +139,14 @@ textarea:hover {
 }
 
 #crear {
-  width: 502px;
+  width: 250px;
 
   padding: 0;
   margin: -5px 0px 0px 0px;
 
   font-family: 'Lato', sans-serif;
   font-size: 0.875em;
-  color: #b3aca7;
+  color: #000000;
 
   outline:none;
   cursor: pointer;
@@ -164,5 +156,28 @@ textarea:hover {
 }
 
 #submit:hover {
+  color: #e2dedb;
+}
+#regresar {
+  width: 250px;
+  position: absolute;
+  left: 252px;
+  top: 152px;
+  padding: 0;
+  margin: 5px 0px 0px 0px;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  color: #000000;
+
+  outline:none;
+  cursor: pointer;
+
+  border: solid 1px #b3aca7;
+  border-top: none;
+
+}
+
+#button:hover {
   color: #e2dedb;
 }
