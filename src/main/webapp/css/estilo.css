@@ -1,0 +1,35 @@
+body{
+	background-image :
+	linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+	url(../img/f.png);
+	background-image-repeat : no-repeat;
+	background-size: 100% 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#titulo{
+    color: white;
+}
+label{
+    text-align: center;
+    color: white;
+}
+#nombreCat{
+    text-align: center;
+    background-color: red;
+    width: 350px;
+    height: 100px;
+
+
+}
+
+#descripcion{
+
+    text-align: center;
+    background-color: red;
+}
