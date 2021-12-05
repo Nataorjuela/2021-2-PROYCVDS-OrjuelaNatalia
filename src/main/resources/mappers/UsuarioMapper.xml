@@ -18,6 +18,12 @@
         VALUES
         (#{idCategoria}, #{nombreCategoria}, #{descripcion},#{fechaCreacion}, #{fechaModif});
     </insert>
+	<insert parameterType = "map" id = "registrarNecesidad">
+		INSERT INTO necesidad
+		(idNecesidad, idCategoria, nombreNec, descripcion, urgencia, estado, fechaCreacion,fechaModif
+		VALUES
+		(#{idNecesidad}, #{idCategoria}, #{nombreNec}, #{descripcion},#{urgencia},#{estado},#{fechaCreacion}, #{fechaModif});
+	</insert>
     
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
 		select 

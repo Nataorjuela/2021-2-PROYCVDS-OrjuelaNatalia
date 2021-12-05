@@ -16,15 +16,15 @@ public class OnlyNot extends AccessControlFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         if (SecurityUtils.getSubject().hasRole("Administrador")) {
-            welcomeurl="/faces/homeA.xhtml";
+            welcomeurl="/faces/administrador.xhtml";
         } else if(SecurityUtils.getSubject().hasRole("Estudiante")){
-            welcomeurl="/faces/homeB.xhtml";
+            welcomeurl="/faces/estudiante.xhtml";
         } else if(SecurityUtils.getSubject().hasRole("Profesor")){
-            welcomeurl="/faces/homeB.xhtml";
+            welcomeurl="/faces/profesor.xhtml";
         }else if(SecurityUtils.getSubject().hasRole("Egresado")){
-            welcomeurl="/faces/homeB.xhtml";
+            welcomeurl="/faces/egresado.xhtml";
         }else if(SecurityUtils.getSubject().hasRole("Administrativo")){
-            welcomeurl="/faces/homeB.xhtml";
+            welcomeurl="/faces/administrativo.xhtml";
         }
 
         WebUtils.issueRedirect(servletRequest, servletResponse, welcomeurl);

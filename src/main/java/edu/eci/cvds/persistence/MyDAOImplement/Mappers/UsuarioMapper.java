@@ -13,8 +13,11 @@ public interface UsuarioMapper {
 
     public void crearCategoria(@Param("idCategoria") int idCategoria, @Param("nombreCategoria") String nombreCategoria, @Param("descripcion") String descripcion, @Param("fechaCreacion") Date fechaCreacion, @Param("fechaModif") Date fechaModif);
 
-    public void actualizarCategoria();
+    public void actualizarCategoria(@Param("idCategoria") int idCategoria);
 
-    public void registrarNecesidad(@Param("idNecesidad") int idNecesidad, @Param("idCategoria") int idCategoria, @Param("nombreNec") String nombreNec, @Param("descripcion") String descripcion, @Param("urgencia") String urgencia, @Param("fechaCreacion") Date fechaCreacion, @Param("estado") boolean estado, @Param("fechaModif") Date fechaModif);
+    public void registrarNecesidad(@Param("idNecesidad") int idNecesidad, @Param("idCategoria") int idCategoria, @Param("nombreNec") String nombreNec, @Param("descripcion") String descripcion, @Param("urgencia") String urgencia, @Param("estado") boolean estado);
+
+    public void actualizarNecesidad(@Param("idNecesidad") int idNecesidad);
+
 
 }

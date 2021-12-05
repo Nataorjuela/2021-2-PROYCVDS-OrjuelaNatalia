@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "edu.eci.cvds.persistence.MyDAOImplement.Mappers.NecesidadMapper">
+
+    <resultMap type='Necesidad' id='NecesidadResult'>
+        <id property='idNecesidad' column='idcecesidad'/>
+        <id property='idCategoria' column='idcategoria'/>
+        <id property='nombreNec' column='nombrenec'/>
+        <id property='descripcion' column='descripcion'/>
+        <id property='urgencia' column='urgencia'/>
+        <id property='estado' column='estado'/>
+        <id property='fechaCreacion' column='fechaCreacion'/>
+        <id property='fechaModif' column='fechaModif'/>
+    </resultMap>
+
+
+    <select parameterType="map" id="consultarNecesidad" resultMap="NecesidadResult">
+        select
+        u.idnecesidad,
+        u.idcategoria,
+        u.nombrenec,
+        u.descripcion,
+        u.urgencia,
+        u.estado,
+        u.fechaCreacion,
+        u.fechaModif
+        FROM necesidad as u;
+    </select>
+
+    <update parameterType = "map" id = "actualizarNecesidad">
+        update necesidad
+        set estado=#{estado}
+        WHERE idnecesidad = #{idNecesidad};
+    </update>
+
+
+
+</mapper>

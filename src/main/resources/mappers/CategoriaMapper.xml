@@ -28,6 +28,12 @@
 	
 	</delete>
 
+	<update parameterType = "map" id = "actualizarCategoria">
+		update categoria
+		set nombrecateg=#{nombreCategoria} ,
+		descripcion=#{descripcion}
+		WHERE idcategoria = #{idCategoria};
+	</update>
 
 
 

@@ -48,8 +48,7 @@ public class UsuarioBean extends BasePageBean{
         }
 
     }
-    
-    
+
     public void existingSession() throws IOException{
         this.message = "Another user with those credentials already exists";
         FacesContext facesContext = FacesContext.getCurrentInstance();

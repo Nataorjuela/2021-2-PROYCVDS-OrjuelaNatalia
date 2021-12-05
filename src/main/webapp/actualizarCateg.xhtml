@@ -5,13 +5,114 @@
          xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Actualizar Categoria</title>
-    <link href="css/actualizar.css" rel="stylesheet"/>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+    <link href="css/es.css" rel="stylesheet"/>
+    <title>Actualizar Categoría</title>
 </h:head>
 <body>
-    <h1><a>Actualizar Categoria<span></span></a></h1>
-    <label>Ingrese su categoria </label>
-    <input type="text"/>
-    <input id="regresar" type="button" placeholder="REGRESAR" value="Regresar" onclick="location.href='/administrador.xhtml'"/>
+<div id="wrapper">
+    <div id="header">
+        <div id="logo">
+            <h1><a>Administrador<span></span></a></h1>
+            <h:form action="#">
+                <p:commandButton  actionListener="#{usuarioBean.salir}" value="Cerrar Sesion" />
+            </h:form>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="content">
+        <header>
+            <nav class="navegacion">
+                <ul class="menu">
+
+                    <li><a href="administrador.xhtml">Categoria</a>
+                        <ul class="submenu">
+                            <li><a href="crearCateg.xhtml">Crear Categoria</a></li>
+                            <li><a href="actualizarCateg.xhtml">Actualizar Categoria</a></li>
+                            <li><a href="eliminarCateg.xhtml">Eliminar Categoria</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrador.xhtml">Oferta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarOfertaAdmin.xhtml">Registrar Oferta</a></li>
+                            <li><a href="actualizarOfertaAdmin.xhtml">Actualizar Oferta</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrador.xhtml">Necesidad</a>
+                        <ul class="submenu">
+                            <li><a href="registrarNecAdmin.xhtml">Registrar Necesidad</a></li>
+                            <li><a href="actualizarNecAdmin.xhtml">Actualizar Necesidad</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </header>
+
+        <div>
+
+            <h:form>
+
+                <p:dataTable id="singleDT" var="categoria" value="#{serviciosBean.consultarCategorias()}"
+                             paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rows="10">
+                    <f:facet name="header">
+                        Categorias registradas:
+                    </f:facet>
+                    <p:column headerText="Id Categoria">
+                        <h:outputText value="#{categoria.idCategoria}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{categoria.nombreCategoria}" />
+                    </p:column>
+
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{categoria.descripcion}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de creación">
+                        <h:outputText value="#{categoria.fechaCreacion}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de modificación">
+                        <h:outputText value="#{categoria.fechaModif}" />
+                    </p:column>
+
+
+                </p:dataTable>
+            </h:form>
+
+        </div>
+
+        <br />
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+
+
+            <p:inputText  class="input" id="inputActualizarid" value="#{serviciosBean.idCategoria}" placeholder="ID CATEGORIA"/>
+            <br />
+            <p:inputText  class="input" id="inputActualizarnombre" value="#{serviciosBean.nombreCategoria}" placeholder="NOMBRE CATEGORIA"/>
+            <br />
+            <p:inputText  class="input" id="inputActualizardescripcion" value="#{serviciosBean.descripcion}" placeholder="DESCRIPCION"/>
+            <br />
+            <p:commandButton class="button" actionListener="#{serviciosBean.actualizarCategoria}" value="Actualizar Categoria" update="growl" onclick="actualizarCateg.xhtml"/>
+
+
+        </h:form>
+
+
+        <div class="col">
+            <h2>Bienvenid@! administrador:</h2>
+            <h:form action="#">
+                <h:outputText value="#{usuarioBean.usuarioId}" style="color:#ffffff"/>
+            </h:form>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

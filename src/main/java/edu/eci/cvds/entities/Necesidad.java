@@ -9,17 +9,20 @@ public class Necesidad {
     private String descripcion;
     private String urgencia;
     private Date fechaCreacion;
-    private boolean estado;
+    private String estado;
     private Date fechaModif;
+    public Necesidad() {
+        super();
+    }
 
-    public Necesidad(int idNecesidad, int idCategoria, String nombreNec, String descripcion, String urgencia, Date fechaCreacion,boolean estado, Date fechaModif) {
+    public Necesidad(int idNecesidad, int idCategoria, String nombreNec, String descripcion, String urgencia,String estado, Date fechaCreacion, Date fechaModif) {
         this.idNecesidad = idNecesidad;
         this.idCategoria = idCategoria;
         this.nombreNec = nombreNec;
         this.descripcion = descripcion;
         this.urgencia = urgencia;
-        this.fechaCreacion = fechaCreacion;
         this.estado=estado;
+        this.fechaCreacion = fechaCreacion;
         this.fechaModif = fechaModif;
     }
 
@@ -79,11 +82,18 @@ public class Necesidad {
         this.fechaModif = fechaModif;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
+    @Override
+    public String toString() {
+        return "Necesidad {idNecesidad: " + idNecesidad + "idCategoria: " + idCategoria +", nombreNecesidad: " + nombreNec + " ,descripcion: " + descripcion + ",urgencia: " + urgencia +",estado: "+estado+", fechaCreacion: " + fechaCreacion + ", fechaModif : " + fechaModif+ "}\n";
+    }
+
 }

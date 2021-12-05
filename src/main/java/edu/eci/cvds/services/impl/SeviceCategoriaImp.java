@@ -25,5 +25,12 @@ public class SeviceCategoriaImp implements ServicioCategoria {
 		categoriaDao.eliminarCategotia(idCategoria);
 		
 	}
+	@Override
+	public void actualizarCategotia(int idCategoria,String nombreCategoria,String descripcion) throws PersistenceException {
+		categoriaDao.actualizarCategotia(idCategoria,nombreCategoria,descripcion);
+
+	}
+
+
 
 }

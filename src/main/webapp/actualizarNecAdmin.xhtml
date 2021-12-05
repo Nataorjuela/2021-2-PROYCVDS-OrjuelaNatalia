@@ -5,11 +5,121 @@
          xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+    <link href="css/es.css" rel="stylesheet"/>
     <title>Actualizar Necesidad</title>
 </h:head>
 <body>
-    <h1><a>Actualizar Necesidad<span></span></a></h1>
-    <label>Ingrese su Necesidad</label>
-    <input type="text"/>
+<div id="wrapper">
+    <div id="header">
+        <div id="logo">
+            <h1><a>Administrador<span></span></a></h1>
+            <h:form action="#">
+                <p:commandButton  actionListener="#{usuarioBean.salir}" value="Cerrar Sesion" />
+            </h:form>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="content">
+        <header>
+            <nav class="navegacion">
+                <ul class="menu">
+
+                    <li><a href="administrador.xhtml">Categoria</a>
+                        <ul class="submenu">
+                            <li><a href="crearCateg.xhtml">Crear Categoria</a></li>
+                            <li><a href="actualizarCateg.xhtml">Actualizar Categoria</a></li>
+                            <li><a href="eliminarCateg.xhtml">Eliminar Categoria</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrador.xhtml">Oferta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarOfertaAdmin.xhtml">Registrar Oferta</a></li>
+                            <li><a href="actualizarOfertaAdmin.xhtml">Actualizar Oferta</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrador.xhtml">Necesidad</a>
+                        <ul class="submenu">
+                            <li><a href="registrarNecAdmin.xhtml">Registrar Necesidad</a></li>
+                            <li><a href="actualizarNecAdmin.xhtml">Actualizar Necesidad</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </header>
+
+        <div>
+
+            <h:form>
+
+                <p:dataTable id="singleDT" var="necesidad" value="#{necesidadBean.consultarNecesidad()}"
+                             paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rows="10">
+                    <f:facet name="header">
+                        Necesidades registradas:
+                    </f:facet>
+                    <p:column headerText="Id Necesidad">
+                        <h:outputText value="#{necesidad.idNecesidad}" />
+                    </p:column>
+
+                    <p:column headerText="Id Categoria">
+                        <h:outputText value="#{necesidad.idCategoria}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{necesidad.nombreNec}" />
+                    </p:column>
+
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{necesidad.descripcion}" />
+                    </p:column>
+
+                    <p:column headerText="Urgencia">
+                        <h:outputText value="#{necesidad.urgencia}" />
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{necesidad.estado}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de creación">
+                        <h:outputText value="#{necesidad.fechaCreacion}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de modificación">
+                        <h:outputText value="#{necesidad.fechaModif}" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+
+        </div>
+
+        <br />
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+
+
+            <p:inputText  class="input" id="inputActualizarestado" value="#{necesidadBean.estado}" placeholder="ESTADO"/>
+            <br />
+            <p:commandButton class="button" actionListener="#{necesidadBean.actualizarNecesidad}" value="Actualizar Estado" update="growl" onclick="actualizarNecAdmin.xhtml"/>
+
+
+        </h:form>
+
+
+        <div class="col">
+            <h2>Bienvenid@! administrador:</h2>
+            <h:form action="#">
+                <h:outputText value="#{usuarioBean.usuarioId}" style="color:#ffffff"/>
+            </h:form>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

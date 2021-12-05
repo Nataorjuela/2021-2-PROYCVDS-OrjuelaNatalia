@@ -39,4 +39,17 @@ public class CategoriaDaoImpl implements CategoriaDao {
 		
 	}
 
+    @Override
+    public void actualizarCategotia(int idCategoria,String nombreCategoria, String descripcion) throws PersistenceException{
+        try{
+            categoriaMapper.actualizarCategoria(idCategoria,nombreCategoria,descripcion);
+        }
+        catch(Exception e){
+            System.out.println(e);
+            throw new PersistenceException("Error al actualizar la categoria:",e);
+        }
+
+    }
+
+
 }

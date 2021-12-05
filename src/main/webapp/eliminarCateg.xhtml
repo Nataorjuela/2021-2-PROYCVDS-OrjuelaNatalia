@@ -8,7 +8,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
     <link href="css/es.css" rel="stylesheet"/>
-    <title>OmpaLoompa</title>
+    <title>Eliminar Categoria</title>
 </h:head>
 <body>
 <div id="wrapper">
@@ -35,14 +35,14 @@
                     </li>
                     <li><a href="admin.xhtml">Oferta</a>
                         <ul class="submenu">
-                            <li><a href="registrarEquipo.xhtml">Registrar Oferta</a></li>
-                            <li><a href="configurarEquipo.xhtml">Actualizar Oferta</a></li>
+                            <li><a href="registrarOfertaAdmin.xhtml">Registrar Oferta</a></li>
+                            <li><a href="actualizarOfertaAdmin.xhtml">Actualizar Oferta</a></li>
                         </ul>
                     </li>
-                    <li><a href="admin.xhtml">Necesidad</a>
+                    <li><a href="administrador.xhtml">Necesidad</a>
                         <ul class="submenu">
-                            <li><a href="registrarEquipo.xhtml">Registrar Necesidad</a></li>
-                            <li><a href="configurarEquipo.xhtml">Actualizar Necesidad</a></li>
+                            <li><a href="registrarNecAdmin.xhtml">Registrar Necesidad</a></li>
+                            <li><a href="actualizarNecAdmin.xhtml">Actualizar Necesidad</a></li>
                         </ul>
                     </li>
 
@@ -97,8 +97,8 @@
 
                 <p:inputText  class="input" id="inputEliminar" value="#{serviciosBean.idCategoria}"/>
                 <br />
-                <p:commandButton class="button" actionListener="#{serviciosBean.eliminarCategoria}" value="Eliminar Categoria" update="growl" onclick="location.reload()"/>
-    
+                <p:commandButton class="button" actionListener="#{serviciosBean.eliminarCategoria}" value="Eliminar Categoria" update="growl" onclick="eliminarCateg.xhtml"/>
+
 
         </h:form>
 

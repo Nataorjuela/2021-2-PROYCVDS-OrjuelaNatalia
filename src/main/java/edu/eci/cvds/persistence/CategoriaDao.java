@@ -10,4 +10,6 @@ public interface CategoriaDao {
 	
 	public void eliminarCategotia(int idCategoria) throws PersistenceException;
 
+    public void actualizarCategotia(int idCategoria,String nombreCategoria,String descripcion) throws PersistenceException;
+
 }
