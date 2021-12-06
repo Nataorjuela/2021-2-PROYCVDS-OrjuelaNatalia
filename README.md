@@ -24,10 +24,15 @@ La Plataforma Solidaridad Escuela, es una herramienta para generar un entorno de
 
 **Manual De Usuario**
 1) Inicio de Sesión
+
 ![image](https://user-images.githubusercontent.com/54339107/144923396-d5c6baf8-ef5e-41fb-812e-8376ccdbf63f.png)
+
 2)Seleccionar en el panel la actividad que desea realizar
+
 ![image](https://user-images.githubusercontent.com/54339107/144923671-af9d826b-ddd6-465f-8c62-fbe5429bdbfe.png)
+
 3)Cerrar Sesión
+
 ![image](https://user-images.githubusercontent.com/54339107/144923791-78361e93-b67f-451e-878f-c47854f17aa8.png)
 
 
