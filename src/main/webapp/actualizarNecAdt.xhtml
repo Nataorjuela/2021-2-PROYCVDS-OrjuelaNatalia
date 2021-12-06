@@ -5,12 +5,120 @@
          xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+    <link href="css/es.css" rel="stylesheet"/>
     <title>Actualizar Necesidad</title>
 </h:head>
 <body>
-<h1><a>Actualizar Necesidad<span></span></a></h1>
-<label>Ingrese su Necesidad</label>
-<input type="text"/>
-<input id="regresar" type="button" placeholder="REGRESAR" value="Regresar" onclick="location.href='/administrativo.xhtml'"/>
+<div id="wrapper">
+    <div id="header">
+        <div id="logo">
+            <h1><a>Administrativo<span></span></a></h1>
+            <h:form action="#">
+                <p:commandButton  actionListener="#{usuarioBean.salir}" value="Cerrar Sesion" />
+            </h:form>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="content">
+        <header>
+            <nav class="navegacion">
+                <ul class="menu">
+
+                    <li><a href="administrativo.xhtml">Oferta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarOfertaAdt.xhtml">Registrar Oferta</a></li>
+                            <li><a href="actualizarOfertaAdt.xhtml">Actualizar Oferta</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrativo.xhtml">Necesidad</a>
+                        <ul class="submenu">
+                            <li><a href="registrarNecAdt.xhtml">Registrar Necesidad</a></li>
+                            <li><a href="actualizarNecAdt.xhtml">Actualizar Necesidad</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrativo.xhtml">Respuesta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarResAdt.xhtml">Registrar Respuesta</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </header>
+
+        <div>
+
+            <h:form>
+
+                <p:dataTable id="singleDT" var="necesidad" value="#{necesidadBean.consultarNecesidad()}"
+                             paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rows="10">
+                    <f:facet name="header">
+                        Necesidades registradas:
+                    </f:facet>
+                    <p:column headerText="Id Necesidad">
+                        <h:outputText value="#{necesidad.idNecesidad}" />
+                    </p:column>
+
+                    <p:column headerText="Id Categoria">
+                        <h:outputText value="#{necesidad.idCategoria}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{necesidad.nombreNec}" />
+                    </p:column>
+
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{necesidad.descripcion}" />
+                    </p:column>
+
+                    <p:column headerText="Urgencia">
+                        <h:outputText value="#{necesidad.urgencia}" />
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{necesidad.estado}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de creación">
+                        <h:outputText value="#{necesidad.fechaCreacion}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de modificación">
+                        <h:outputText value="#{necesidad.fechaModif}" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+
+        </div>
+
+        <br />
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+
+            <p:inputText  class="input" id="inputidNec" value="#{necesidadBean.idNec}" placeholder="ID NECESIDAD"/>
+            <br />
+            <p:inputText  class="input" id="inputActualizarestado" value="#{necesidadBean.estado}" placeholder="ESTADO"/>
+            <br />
+            <p:commandButton class="button" actionListener="#{necesidadBean.actualizarNecesidad}" value="Actualizar Estado" update="growl" onclick="actualizarNecAdt.xhtml"/>
+
+
+        </h:form>
+
+
+        <div class="col">
+            <h2>Bienvenid@! administrativo:</h2>
+            <h:form action="#">
+                <h:outputText value="#{usuarioBean.usuarioId}" style="color:#ffffff"/>
+            </h:form>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

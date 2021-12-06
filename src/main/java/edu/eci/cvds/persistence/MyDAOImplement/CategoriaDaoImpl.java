@@ -1,5 +1,6 @@
 package edu.eci.cvds.persistence.MyDAOImplement;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -9,6 +10,7 @@ import edu.eci.cvds.entities.Categoria;
 import edu.eci.cvds.persistence.CategoriaDao;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.MyDAOImplement.Mappers.CategoriaMapper;
+import org.apache.ibatis.annotations.Param;
 
 public class CategoriaDaoImpl implements CategoriaDao {
 	
@@ -26,6 +28,19 @@ public class CategoriaDaoImpl implements CategoriaDao {
             throw new PersistenceException("Error al consultar las categorias:",e);
         }	
 	}
+    @Override
+    public void crearCategoria(String nombreCategoria, String descripcion,Date fechaCreacion,Date fechaModif)throws PersistenceException{
+        try{
+            categoriaMapper.crearCategoria(nombreCategoria,descripcion,fechaCreacion,fechaModif);
+        }
+        catch(Exception e){
+            System.out.println(e);
+            throw new PersistenceException("Error al crear la categoria:",e);
+        }
+
+    }
+
+
 
 	@Override
 	public void eliminarCategotia(int idCategoria) throws PersistenceException{

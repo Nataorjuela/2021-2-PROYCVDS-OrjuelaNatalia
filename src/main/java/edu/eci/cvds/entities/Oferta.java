@@ -7,11 +7,14 @@ public class Oferta {
     private int idCategoria;
     private String nombreOferta;
     private String descripcion;
-    private boolean estado;
+    private String estado;
     private Date fechaCreacion;
     private Date fechaModif;
 
-    public Oferta(int idOferta, int idCategoria, String nombreOferta, String descripcion, boolean estado, Date fechaCreacion, Date fechaModif) {
+    public Oferta() {
+        super();
+    }
+    public Oferta(int idOferta, int idCategoria, String nombreOferta, String descripcion, String estado, Date fechaCreacion, Date fechaModif) {
         this.idOferta = idOferta;
         this.idCategoria = idCategoria;
         this.nombreOferta = nombreOferta;
@@ -53,11 +56,11 @@ public class Oferta {
         this.descripcion = descripcion;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -76,4 +79,11 @@ public class Oferta {
     public void setFechaModif(Date fechaModif) {
         this.fechaModif = fechaModif;
     }
+
+
+    @Override
+    public String toString() {
+        return "Oferta {idOferta: " + idOferta + "idCategoria: " + idCategoria +", nombreOferta: " + nombreOferta + " ,descripcion: " + descripcion + ",estado: " + estado +", fechaCreacion: " + fechaCreacion + ", fechaModif : " + fechaModif+ "}\n";
+    }
+
 }

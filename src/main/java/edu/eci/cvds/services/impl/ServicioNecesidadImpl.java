@@ -1,5 +1,6 @@
 package edu.eci.cvds.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,6 +20,11 @@ public class ServicioNecesidadImpl implements ServicioNecesidad {
     public List<Necesidad> consultarNecesidad() throws PersistenceException {
         return necesidadDao.obtenerNecesidad();
     }
+    @Override
+    public void crearNecesidad(int idCategoria, String nombreNec, String descripcion, String urgencia , Date fechaCreacion, String estado, Date fechaModif)throws PersistenceException{
+        necesidadDao.crearNecesidad(idCategoria, nombreNec,descripcion, urgencia ,fechaCreacion,estado, fechaModif);
+    }
+
 
     @Override
     public void actualizarNecesidad(int idNecesidad,String estado) throws PersistenceException {

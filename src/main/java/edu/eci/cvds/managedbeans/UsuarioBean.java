@@ -138,8 +138,6 @@ public class UsuarioBean extends BasePageBean{
             session.setAttribute("usuarioid", usuarioId);
             facesContext.getExternalContext().redirect("../egresado.xhtml");
         }
-        
-        
 
 
     }

@@ -45,6 +45,11 @@
                             <li><a href="actualizarNecAdmin.xhtml">Actualizar Necesidad</a></li>
                         </ul>
                     </li>
+                    <li><a href="administrador.xhtml">Respuesta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarResAdmin.xhtml">Registrar Respuesta</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
 
@@ -103,7 +108,8 @@
         <h:form>
             <p:growl id="growl" showDetail="true" />
 
-
+            <p:inputText  class="input" id="inputidNec" value="#{necesidadBean.idNec}" placeholder="ID NECESIDAD"/>
+            <br />
             <p:inputText  class="input" id="inputActualizarestado" value="#{necesidadBean.estado}" placeholder="ESTADO"/>
             <br />
             <p:commandButton class="button" actionListener="#{necesidadBean.actualizarNecesidad}" value="Actualizar Estado" update="growl" onclick="actualizarNecAdmin.xhtml"/>

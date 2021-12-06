@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "edu.eci.cvds.persistence.MyDAOImplement.Mappers.OfertaMapper">
+
+    <resultMap type='Oferta' id='OfertaResult'>
+        <id property='idOferta' column='idOferta'/>
+        <id property='idCategoria' column='idCategoria'/>
+        <id property='nombreOferta' column='nombreOferta'/>
+        <id property='descripcion' column='descripcion'/>
+        <id property='estado' column='estado'/>
+        <id property='fechaCreacion' column='fechaCreacion'/>
+        <id property='fechaModif' column='fechaModif'/>
+    </resultMap>
+
+
+    <select parameterType="map" id="consultarOfertas" resultMap="OfertaResult">
+        select
+        idOferta,
+        idCategoria,
+        nombreOferta,
+        descripcion,
+        estado,
+        fechaCreacion,
+        fechaModif
+        FROM oferta;
+    </select>
+
+    <insert parameterType="map" id="crearOferta">
+        INSERT INTO oferta (idCategoria,nombreOferta,descripcion,estado,fechaCreacion,fechaModif)
+        VALUES (#{idCategoria},#{nombreOferta}, #{descripcion},#{estado},#{fechaCreacion},#{fechaModif});
+    </insert>
+
+    <update parameterType = "map" id = "actualizarOferta">
+        update oferta
+        set estado=#{estado}
+        WHERE idOferta = #{idOferta};
+    </update>
+
+
+</mapper>
+
+

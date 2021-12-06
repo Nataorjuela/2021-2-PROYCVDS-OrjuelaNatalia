@@ -22,7 +22,11 @@
 		u.fechaModif
 		FROM categoria as u;
 	</select>
-	
+	<insert parameterType="map" id="crearCategoria">
+		INSERT INTO categoria (nombreCateg,descripcion,fechaCreacion,fechaModif)
+		VALUES (#{nombreCategoria}, #{descripcion},#{fechaCreacion},#{fechaModif});
+	</insert>
+
 	<delete parameterType = "map" id = "eliminarCategoria">
 		DELETE FROM categoria WHERE idcategoria = #{idCategoria};
 	

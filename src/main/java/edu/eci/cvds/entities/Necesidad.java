@@ -8,8 +8,8 @@ public class Necesidad {
     private String nombreNec;
     private String descripcion;
     private String urgencia;
-    private Date fechaCreacion;
     private String estado;
+    private Date fechaCreacion;
     private Date fechaModif;
     public Necesidad() {
         super();
@@ -82,7 +82,7 @@ public class Necesidad {
         this.fechaModif = fechaModif;
     }
 
-    public String isEstado() {
+    public String getEstado() {
         return estado;
     }
 

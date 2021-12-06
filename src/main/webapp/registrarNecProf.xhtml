@@ -5,14 +5,127 @@
          xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+    <link href="css/es.css" rel="stylesheet"/>
     <title>Registrar Necesidad</title>
-    <link href="css/registrar.css" rel="stylesheet"/>
 </h:head>
-<form id="forma" class="topBefore">
-    <h1><a>Registrar Necesidad<span></span></a></h1>
-    <input id="nombre" type="text" placeholder="NOMBRE NECESIDAD"/>
-    <input id="descripcion" type="text" placeholder="DESCRIPCION NECESIDAD"/>
-    <input id="crear" type="submit" placeholder="CREAR" value="Crear"/>
-    <input id="regresar" type="button" placeholder="REGRESAR" value="Regresar" onclick="location.href='/profesor.xhtml'"/>
-</form>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <div id="logo">
+            <h1><a>Profesor<span></span></a></h1>
+            <h:form action="#">
+                <p:commandButton  actionListener="#{usuarioBean.salir}" value="Cerrar Sesion" />
+            </h:form>
+            <input id="regresar" type="button" placeholder="REGRESAR" value="Regresar" onclick="location.href='/administrador.xhtml'"/>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="content">
+        <header>
+            <nav class="navegacion">
+                <ul class="menu">
+
+                    <li><a href="profesor.xhtml">Oferta</a>
+                        <ul class="submenu">
+                            <li><a href="actualizarOfertaProfn.xhtml">Actualizar Oferta</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profesor.xhtml">Necesidad</a>
+                        <ul class="submenu">
+                            <li><a href="registrarNecProf.xhtml">Registrar Necesidad</a></li>
+                            <li><a href="actualizarNecProf.xhtml">Actualizar Necesidad</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profesor.xhtml">Respuesta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarResProf.xhtml">Registrar Respuesta</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </header>
+
+        <div>
+
+            <h:form>
+
+                <p:dataTable id="singleDT" var="necesidad" value="#{necesidadBean.consultarNecesidad()}"
+                             paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rows="10">
+                    <f:facet name="header">
+                        Necesidades Registradas:
+                    </f:facet>
+                    <p:column headerText="Id Necesidad">
+                        <h:outputText value="#{necesidad.idNecesidad}" />
+                    </p:column>
+
+                    <p:column headerText="Id Categoria">
+                        <h:outputText value="#{necesidad.idCategoria}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{necesidad.nombreNec}" />
+                    </p:column>
+
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{necesidad.descripcion}" />
+                    </p:column>
+
+                    <p:column headerText="Urgencia">
+                        <h:outputText value="#{necesidad.urgencia}" />
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{necesidad.estado}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de creación">
+                        <h:outputText value="#{necesidad.fechaCreacion}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha de modificación">
+                        <h:outputText value="#{necesidad.fechaModif}" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+
+        </div>
+
+        <br />
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+
+
+            <p:inputText  class="input" id="inputCrearidCatg" value="#{necesidadBean.idCateg}" placeholder="ID CATEGORIA"/>
+            <br />
+            <p:inputText  class="input" id="inputCrearnombrenec" value="#{necesidadBean.nombreNecesidad}" placeholder="NOMBRE NECESIDAD"/>
+            <br />
+            <p:inputText  class="input" id="inputCreardescripcionnec" value="#{necesidadBean.descripcion}" placeholder="DESCRIPCION"/>
+            <br />
+            <p:inputText  class="input" id="inputCrearurgnec" value="#{necesidadBean.urgencia}" placeholder="URGENCIA"/>
+            <br />
+            <p:inputText  class="input" id="inputCrearestadonec" value="#{necesidadBean.estado}" placeholder="ESTADO"/>
+            <br />
+            <p:commandButton class="button" actionListener="#{necesidadBean.crearNecesidad}" value="Crear Necesidad" update="growl" onclick="registrarNecProf.xhtml"/>
+
+
+        </h:form>
+
+
+        <div class="col">
+            <h2>Bienvenid@! profesor:</h2>
+            <h:form action="#">
+                <h:outputText value="#{usuarioBean.usuarioId}" style="color:#ffffff"/>
+            </h:form>
+        </div>
+    </div>
+
+</div>
+</body>
 </html>

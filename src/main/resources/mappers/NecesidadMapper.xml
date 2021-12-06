@@ -5,29 +5,34 @@
 <mapper namespace = "edu.eci.cvds.persistence.MyDAOImplement.Mappers.NecesidadMapper">
 
     <resultMap type='Necesidad' id='NecesidadResult'>
-        <id property='idNecesidad' column='idcecesidad'/>
-        <id property='idCategoria' column='idcategoria'/>
-        <id property='nombreNec' column='nombrenec'/>
+        <id property='idNecesidad' column='idNecesidad'/>
+        <id property='idCategoria' column='idCategoria'/>
+        <id property='nombreNec' column='nombreNec'/>
         <id property='descripcion' column='descripcion'/>
         <id property='urgencia' column='urgencia'/>
-        <id property='estado' column='estado'/>
         <id property='fechaCreacion' column='fechaCreacion'/>
+        <id property='estado' column='estado'/>
         <id property='fechaModif' column='fechaModif'/>
     </resultMap>
 
 
     <select parameterType="map" id="consultarNecesidad" resultMap="NecesidadResult">
         select
-        u.idnecesidad,
-        u.idcategoria,
-        u.nombrenec,
-        u.descripcion,
-        u.urgencia,
-        u.estado,
-        u.fechaCreacion,
-        u.fechaModif
-        FROM necesidad as u;
+        idNecesidad,
+        idCategoria,
+        nombreNec,
+        descripcion,
+        urgencia,
+        fechaCreacion,
+        estado,
+        fechaModif
+        FROM necesidad;
     </select>
+    <insert parameterType="map" id="crearNecesidad">
+        INSERT INTO necesidad (idCategoria,nombreNec,descripcion,urgencia,fechaCreacion,estado,fechaModif)
+        VALUES (#{idCategoria},#{nombreNec}, #{descripcion},#{urgencia},#{fechaCreacion},#{estado},#{fechaModif});
+    </insert>
+
 
     <update parameterType = "map" id = "actualizarNecesidad">
         update necesidad

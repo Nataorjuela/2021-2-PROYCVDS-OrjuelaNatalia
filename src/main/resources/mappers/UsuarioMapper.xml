@@ -14,9 +14,9 @@
 	</resultMap>
     <insert parameterType = "map" id = "crearCategoria">
         INSERT INTO categoria
-        (idCategoria, nombreCategoria,descripcion,fechaCreacion,fechaModif
+        (idCategoria, nombreCategoria,descripcion
         VALUES
-        (#{idCategoria}, #{nombreCategoria}, #{descripcion},#{fechaCreacion}, #{fechaModif});
+        (#{nombreCategoria}, #{descripcion});
     </insert>
 	<insert parameterType = "map" id = "registrarNecesidad">
 		INSERT INTO necesidad

@@ -1,5 +1,8 @@
 package edu.eci.cvds.managedbeans;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -22,8 +25,43 @@ public class NecesidadBean extends BasePageBean{
     @Inject
     private ServicioNecesidad servicioNecesidad;
 
-    private int idNecesidad;
+    private int idNec;
     private String estado;
+    private int idCateg;
+    private String nombreNecesidad,descripcion,urgencia;
+
+    public int getIdCateg() {
+        return idCateg;
+    }
+
+    public void setIdCateg(int idCateg) {
+        this.idCateg = idCateg;
+    }
+
+    public String getNombreNecesidad() {
+        return nombreNecesidad;
+    }
+
+    public void setNombreNecesidad(String nombreNecesidad) {
+        this.nombreNecesidad = nombreNecesidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getUrgencia() {
+        return urgencia;
+    }
+
+    public void setUrgencia(String urgencia) {
+        this.urgencia = urgencia;
+    }
+
 
     public ServicioNecesidad getServicioNecesidad() {
         return servicioNecesidad;
@@ -33,12 +71,12 @@ public class NecesidadBean extends BasePageBean{
         this.servicioNecesidad = servicioNecesidad;
     }
 
-    public int getIdNecesidad() {
-        return idNecesidad;
+    public int getIdNec() {
+        return idNec;
     }
 
-    public void setIdNecesidad(int idNecesidad) {
-        this.idNecesidad = idNecesidad;
+    public void setIdNec(int idNec) {
+        this.idNec = idNec;
     }
 
     public String getEstado() {
@@ -66,15 +104,26 @@ public class NecesidadBean extends BasePageBean{
         }
         return necesidades;
     }
+    public void crearNecesidad()throws PersistenceException {
+        try
+        {
+            System.out.println("entra a querer crear necesidad");
 
-
-
+            LocalDate localDate = LocalDate.now();
+            Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            servicioNecesidad.crearNecesidad(idCateg,nombreNecesidad,descripcion,urgencia,date,estado,date);
+        } catch(PersistenceException e)
+        {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Crear necesidad", "No se pudo crear la necesidad"));
+        }
+    }
     public void actualizarNecesidad()  throws  PersistenceException{
 
         try
         {
             System.out.println("entra a querer actualizar necesidad");
-            servicioNecesidad.actualizarNecesidad(idNecesidad,estado);
+            servicioNecesidad.actualizarNecesidad(idNec,estado);
         } catch(PersistenceException e)
         {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -82,6 +131,5 @@ public class NecesidadBean extends BasePageBean{
         }
 
     }
-
 
 }

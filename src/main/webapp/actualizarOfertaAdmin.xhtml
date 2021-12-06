@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html	xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
          xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
@@ -14,11 +14,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 <div id="wrapper">
     <div id="header">
         <div id="logo">
-            <h1><a>Administrativo<span></span></a></h1>
+            <h1><a>Administrador<span></span></a></h1>
             <h:form action="#">
                 <p:commandButton  actionListener="#{usuarioBean.salir}" value="Cerrar Sesion" />
             </h:form>
-            <input id="regresar" type="button" placeholder="REGRESAR" value="Regresar" onclick="location.href='/administrativo.xhtml'"/>
         </div>
         <div class="clr"></div>
     </div>
@@ -26,21 +25,29 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         <header>
             <nav class="navegacion">
                 <ul class="menu">
-                    <li><a href="administrativo.xhtml">Oferta</a>
+
+                    <li><a href="administrador.xhtml">Categoria</a>
                         <ul class="submenu">
-                            <li><a href="registrarOfertaAdt.xhtml">Registrar Oferta</a></li>
-                            <li><a href="actualizarOfertaAdt.xhtml">Actualizar Oferta</a></li>
+                            <li><a href="crearCateg.xhtml">Crear Categoria</a></li>
+                            <li><a href="actualizarCateg.xhtml">Actualizar Categoria</a></li>
+                            <li><a href="eliminarCateg.xhtml">Eliminar Categoria</a></li>
                         </ul>
                     </li>
-                    <li><a href="administrativo.xhtml">Necesidad</a>
+                    <li><a href="administrador.xhtml">Oferta</a>
                         <ul class="submenu">
-                            <li><a href="registrarNecAdt.xhtml">Registrar Necesidad</a></li>
-                            <li><a href="actualizarNecAdt.xhtml">Actualizar Necesidad</a></li>
+                            <li><a href="registrarOfertaAdmin.xhtml">Registrar Oferta</a></li>
+                            <li><a href="actualizarOfertaAdmin.xhtml">Actualizar Oferta</a></li>
                         </ul>
                     </li>
-                    <li><a href="administrativo.xhtml">Respuesta</a>
+                    <li><a href="administrador.xhtml">Necesidad</a>
                         <ul class="submenu">
-                            <li><a href="registrarResAdt.xhtml">Registrar Respuesta</a></li>
+                            <li><a href="registrarNecAdmin.xhtml">Registrar Necesidad</a></li>
+                            <li><a href="actualizarNecAdmin.xhtml">Actualizar Necesidad</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="administrador.xhtml">Respuesta</a>
+                        <ul class="submenu">
+                            <li><a href="registrarResAdmin.xhtml">Registrar Respuesta</a></li>
                         </ul>
                     </li>
 
@@ -97,14 +104,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <br />
             <p:inputText  class="input" id="inputActualizarestado" value="#{ofertaBean.estado}" placeholder="ESTADO"/>
             <br />
-            <p:commandButton class="button" actionListener="#{ofertaBean.actualizarOferta}" value="Actualizar Estado" update="growl" onclick="actualizarOfertaAdt.xhtml"/>
+            <p:commandButton class="button" actionListener="#{ofertaBean.actualizarOferta}" value="Actualizar Estado" update="growl" onclick="actualizarOfertaAdmin.xhtml"/>
 
 
         </h:form>
 
 
         <div class="col">
-            <h2>Bienvenid@! administrativo:</h2>
+            <h2>Bienvenid@! administrador:</h2>
             <h:form action="#">
                 <h:outputText value="#{usuarioBean.usuarioId}" style="color:#ffffff"/>
             </h:form>

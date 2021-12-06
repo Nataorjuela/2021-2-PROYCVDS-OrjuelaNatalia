@@ -1,5 +1,6 @@
 package edu.eci.cvds.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,6 +20,11 @@ public class SeviceCategoriaImp implements ServicioCategoria {
 	public List<Categoria> consultarCategorias() throws PersistenceException {
 		return categoriaDao.obtenerCategoria();
 	}
+	@Override
+	public void crearCategoria(String nombreCategoria,String descripcion,Date fechaCreacion,Date fechaModif) throws PersistenceException {
+		categoriaDao.crearCategoria(nombreCategoria,descripcion,fechaCreacion,fechaModif);
+
+	}
 
 	@Override
 	public void eliminarCategotia(int idCategoria) throws PersistenceException {
@@ -30,7 +36,5 @@ public class SeviceCategoriaImp implements ServicioCategoria {
 		categoriaDao.actualizarCategotia(idCategoria,nombreCategoria,descripcion);
 
 	}
-
-
 
 }
